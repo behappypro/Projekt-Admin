@@ -1,6 +1,6 @@
 <?php
 
-/* Klass för att hantera anvndare och inloggning*/
+/* Klass för att hantera användare och inloggning*/
 
 class Users{
     private $db;
@@ -17,12 +17,12 @@ function __construct(){
     }
 }
 
-// Register new user
-public function registerUser($username,$password,$email,$name,$path){
+// Registrera ny användare
+public function registerUser($username,$password,$email,$name){
     // För att motverka SQL injections
     $username = $this->db->real_escape_string($username);
     $password = $this->db->real_escape_string($password);
-    $sql = "INSERT INTO users(username,password,email,name,profilepic)VALUES('$username','$password','$email','$name','$path')";
+    $sql = "INSERT INTO users(username,password,email,name)VALUES('$username','$password','$email','$name')";
 
     $result = $this->db->query($sql);
     $_SESSION['username'] = $username;
@@ -30,7 +30,7 @@ public function registerUser($username,$password,$email,$name,$path){
     return $result;
 }
 
-//Login existing user
+//Logga in befintlig användare
 public function loginUser($username,$password){
     $username = $this->db->real_escape_string($username);
     $password = $this->db->real_escape_string($password);
@@ -49,7 +49,7 @@ public function loginUser($username,$password){
  }
 }
 
-// Check if username is already taken
+// Kolla om användarnamet är taget
 
 public function isUsernameTaken($username){
     $username = $this->db->real_escape_string($username);
@@ -64,20 +64,6 @@ public function isUsernameTaken($username){
     else{
         return false;
     }
-
 }
-
-
-public function getName($username){
-    $sql = "SELECT name FROM users WHERE username in (SELECT username from guestbookposts WHERE username='$username');";
-    $result = $this->db->query($sql);
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-          return $row["name"];
-
-}
-    }
-}
-
 
 }

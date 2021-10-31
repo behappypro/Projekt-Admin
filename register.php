@@ -18,7 +18,7 @@ if(isset($_POST['username'])){
 
   else{
     
-    if($users->registerUser($username,$password,$email,$name,$path)){
+    if($users->registerUser($username,$password,$email,$name)){
       echo '<p class="message"> Användare skapad</p>';
       
       header('location: admin.php');
@@ -33,7 +33,7 @@ if(isset($_POST['username'])){
   ?>
 <div class="content">
 <form method="POST" action="register.php" id="register-form" enctype="multipart/form-data">
-<h1 style="color:white;margin-bottom: 40px;text-align:center;">Registrera</h1>
+<h1 style="margin-bottom: 40px;text-align:center;">Registrera</h1>
 <?php if (strpos($_SERVER['REQUEST_URI'], "usernametaken") !== false){
   echo '<h3 style="text-decoration:underline;"> Användarnamnet är upptaget </h3>';
 }?>
@@ -41,23 +41,9 @@ if(isset($_POST['username'])){
 <input type="email" id="email" name="email" placeholder="Email" required="required"/>
 <input type="text" id="username" name="username" placeholder="Användarnamn" required="required"/>
 <input type="password" id="password" name="password" placeholder="Lösenord" required="required"/>
-<input type="checkbox" id="newsletter" name="newsletter" value="newsletter">
-<label for="newsletter" id="newsletter-label"> Jag vill prenumerera på nyhetsbrev</label><br>
 <input type="submit" class="submit" name="submitbtn" value="Registrera">
 <input type="reset" class="reset"/>   
 </form>
 </div>
-
-<script>
-
-function myFunction() {
-  var checkBox = document.getElementById("newsletter");
-  if (checkBox.checked == true){
-    text.style.display = "block";
-  } else {
-     text.style.display = "none";
-  }
-}
-</script>
-
+<script>window.addEventListener('load', hideSidebar, false);</script>
 <?php

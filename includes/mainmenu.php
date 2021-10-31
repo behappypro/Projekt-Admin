@@ -4,11 +4,11 @@
 if(!isset($_SESSION['username'])){
 ?>
 <nav id="mainmenu">
-                <h1 id="title">Admin</h1>
+                <a href="http://studenter.miun.se/~asha1900/dt173g/cms/admin/admin.php"><h1 id="title">Admin</h1></a>
                 <ul>
-                    <li><a href="../index.php">Startsida</a></li>
-                    <li><a href="../projekt-api/login.php">Logga in</a></li>
-                    <li><a href="../projekt-api/register.php">Registrera</a></li>
+                    <li><a href="http://studenter.miun.se/~asha1900/dt173g/cms/admin/admin.php">Startsida</a></li>
+                    <li><a href="http://studenter.miun.se/~asha1900/dt173g/cms/admin/login.php">Logga in</a></li>
+                    <li><a href="http://studenter.miun.se/~asha1900/dt173g/cms/admin/register.php">Registrera</a></li>
                 </ul>        
 </nav>
 
@@ -16,18 +16,14 @@ if(!isset($_SESSION['username'])){
 }else {
 
 ?>
-
                 <nav id="mainmenu">
-                <h1 id="title">Admin</h1>
+                <a href="http://studenter.miun.se/~asha1900/dt173g/cms/admin/admin.php"><h1 id="title">Admin</h1></a>
                 <ul>
-                    <li><a href="../projekt/index.php">Startsida</a></li>
-                    <li><a href="../projekt-api/admin.php">Admin</a></li>
-                    <li><a href="../projekt-api/logout.php">Logga ut</a></li>
+                    <li><a href="http://studenter.miun.se/~asha1900/dt173g/cms/admin/admin.php">Startsida</a></li>
+                    <li><a href="http://studenter.miun.se/~asha1900/dt173g/cms/admin/logout.php">Logga ut</a></li>
                 </ul>        
 </nav>
 <?php 
 }
 
 ?>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

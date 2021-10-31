@@ -11,15 +11,15 @@
     spl_autoload_register(function ($class_name) {
         include "classes/". $class_name . ".class.php";
     });
-    /*
+ 
     define ("DBHOST", "studentmysql.miun.se");
     define ("DBUSER", "asha1900");
     define ("DBPASS", "bsan1x7m");
     define ("DBDATABASE", "asha1900");
     
-    */
-
+    
+/*
     define ("DBHOST", "localhost");
     define ("DBUSER", "admin");
     define ("DBPASS", "password");
-    define ("DBDATABASE", "test");
+    define ("DBDATABASE", "projekt");*/
