@@ -243,11 +243,6 @@ label {
 }
 
 .content {
-	/*
-	width: 85%;
-	float: left;
-	margin-bottom: 100px;
-	margin-top: 50px;*/
 	margin-left: 200px;
 }
 
@@ -487,9 +482,6 @@ button:hover {
 		height: 100%;
 		width: 85%;
 	}
-	.social-container {
-		display: none;
-	}
 	input#post-title,
 	#admin-form textarea {
 		width: 100%;
@@ -507,9 +499,174 @@ button:hover {
 	}
 }
 
-@media screen and (max-width: 430px){
-	#mainmenu>ul>li>a {
-		padding: 7px;
-		margin: 0;
+
+
+
+
+
+/*Table*/
+
+
+table {
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	table-layout: fixed;
+  }
+  
+  table caption {
+	font-size: 1.5em;
+	margin: .5em 0 .75em;
+  }
+  
+  table tr {
+	background-color: #f8f8f8;
+	border: 1px solid #ddd;
+	padding: .35em;
+  }
+  
+  table th,
+  table td {
+	padding: .625em;
+	text-align: center;
+	word-break: break-word;
+  }
+  
+  table th {
+	font-size: .85em;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+  }
+  
+  @media screen and (max-width: 960px) {
+	table {
+	  border: 0;
+	}
+  
+	table caption {
+	  font-size: 1.3em;
+	}
+	
+	table thead {
+	  border: none;
+	  clip: rect(0 0 0 0);
+	  height: 1px;
+	  margin: -1px;
+	  overflow: hidden;
+	  padding: 0;
+	  position: absolute;
+	  width: 1px;
+	}
+	
+	table tr {
+	  border-bottom: 3px solid #ddd;
+	  display: block;
+	  margin-bottom: .625em;
+	}
+	
+	table td {
+	  border-bottom: 1px solid #ddd;
+	  display: block;
+	  font-size: .8em;
+	  text-align: right;
+	}
+	
+	table td::before {
+	  /*
+	  * aria-label has no advantage, it won't be read inside a table
+	  content: attr(aria-label);
+	  */
+	  content: attr(data-label);
+	  float: left;
+	  font-weight: bold;
+	  text-transform: uppercase;
+	}
+	
+	table td:last-child {
+	  border-bottom: 0;
+	}
+  }
+
+
+
+
+
+
+
+
+
+
+  .sidenav {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 60px;
+}
+
+.sidenav a {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 25px;
+	color: white;
+	display: block;
+	transition: 0.3s;
+}
+
+.sidenav a:hover {
+	color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+	position: absolute;
+	top: 35px;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+	.sidenav {
+		padding-top: 15px;
+	}
+	.sidenav a {
+		font-size: 18px;
 	}
 }
+
+span.ham-menu{
+	display: block;
+}
+
+@media screen and (min-width: 450px) {
+	span.ham-menu{
+		display: none;
+	}
+	
+}
+
+  @media screen and (max-width: 460px) {
+	.sidebar-container{
+		display: none;
+	}
+	.content {
+		margin-left: 0;
+	}
+
+	#admin-form{
+		max-width: 90%;
+		background-color: unset;
+	}
+  }
+
+
+  

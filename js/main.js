@@ -1,8 +1,9 @@
-const urlEducation = 'http://studenter.miun.se/~asha1900/dt173g/cms/api/education.php/';
-const urlProjects = 'http://studenter.miun.se/~asha1900/dt173g/cms/api/projects.php/';
-const urlEmployment = 'http://studenter.miun.se/~asha1900/dt173g/cms/api/employment.php/';
+const urlEducation = 'http://localhost/api/education.php/';
+const urlProjects = 'http://localhost/api/projects.php/';
+const urlEmployment = 'http://localhost/api//employment.php/';
+let imagePath = 'http://studenter.miun.se/~asha1900/writeable/images/';
 
-var dataUrl,editPage,objectData;
+var dataUrl,editPage,objectData,educationTable,employmentTable,projectTable,completeImagePath;
 
 // Show Data
 
@@ -10,17 +11,77 @@ function getData(){
     if (window.location.href.indexOf("-education") > 0) {
         dataUrl = urlEducation;
         editPage = 'educationEdit';
+        educationTable = true;
       }
       else if(window.location.href.indexOf("-employment") > 0){
         dataUrl = urlEmployment;
         editPage = 'employmentEdit';
+        employmentTable = true;
       }
 
       else if(window.location.href.indexOf("-projects") > 0){
         dataUrl = urlProjects;
         editPage = 'projectEdit';
+        projectTable = true;
     }
 
+     if(educationTable){
+
+      fetch(dataUrl)
+      .then((res)=>res.json())
+      .then((data)=>{
+          // Variabel som kommer innehålla all data
+          let outPut = '';
+          // loop för att gå igenom all data för utskrift
+          data.forEach(function(post){
+                  outPut +=`
+                  <tr>
+                  <td data-label="Lärosäte">${post[Object.keys(post)[1]]}</td>
+                  <td data-label="Utbidlning">${post[Object.keys(post)[2]]}</td>
+                  <td data-label="Startdatum">${post[Object.keys(post)[3]]}</td>
+                  <td data-label="Slutdatum">${post[Object.keys(post)[4]]}</td>
+                  <td><a class="edit" href="edit.php?${editPage}=${post.id}">
+                  Redigera &#9998;</a></td>
+                  <td><a class="delete" href="?del=${post.id}" 
+                  onclick="deleteData(${post.id})">Tag bort &#10060;</a></td>
+                  </tr>
+                    `
+          });
+          // Skriver ut innehållet i outPut till DOM
+            document.getElementById("data-table").innerHTML = outPut;
+      })
+    }
+
+    else if(employmentTable){
+
+      fetch(dataUrl)
+      .then((res)=>res.json())
+      .then((data)=>{
+          // Variabel som kommer innehålla all data
+          let outPut = '';
+          // loop för att gå igenom all data för utskrift
+          data.forEach(function(post){
+                  outPut +=`
+                  <tr>
+                  <td data-label="Arbetsplats">${post[Object.keys(post)[1]]}</td>
+                  <td data-label="Titel">${post[Object.keys(post)[2]]}</td>
+                  <td data-label="Startdatum">${post[Object.keys(post)[3]]}</td>
+                  <td data-label="Slutdatum">${post[Object.keys(post)[4]]}</td>
+                  <td><a class="edit" href="edit.php?${editPage}=${post.id}">
+                  Redigera &#9998;</a></td>
+                  <td><a class="delete" href="?del=${post.id}" 
+                  onclick="deleteData(${post.id})">Tag bort &#10060;</a></td>
+                  </tr>
+                    `
+          });
+          // Skriver ut innehållet i outPut till DOM
+            document.getElementById("data-table").innerHTML = outPut;
+      })
+    }
+
+
+
+    else if(projectTable){
     fetch(dataUrl)
     .then((res)=>res.json())
     .then((data)=>{
@@ -30,10 +91,10 @@ function getData(){
         data.forEach(function(post){
                 outPut +=`
                 <tr>
-                <td>${post[Object.keys(post)[1]]}</td>
-                <td>${post[Object.keys(post)[2]]}</td>
-                <td>${post[Object.keys(post)[3]]}</td>
-                <td>${post[Object.keys(post)[4]]}</td>
+                <td data-label="Titel">${post[Object.keys(post)[1]]}</td>
+                <td data-label="Beskrivning">${post[Object.keys(post)[2]]}</td>
+                <td data-label="Bakgrundsbild"><img src="${post[Object.keys(post)[3]]}" alt="project image" width="150"></td>
+                <td data-label="Länk">${post[Object.keys(post)[4]]}</td>
                 <td><a class="edit" href="edit.php?${editPage}=${post.id}">
                 Redigera &#9998;</a></td>
                 <td><a class="delete" href="?del=${post.id}" 
@@ -44,6 +105,8 @@ function getData(){
         // Skriver ut innehållet i outPut till DOM
           document.getElementById("data-table").innerHTML = outPut;
     })
+    }
+    
 }
 
 // Get specific data
@@ -134,7 +197,15 @@ function addData(){
     var input2 = document.getElementById('input2').value;
     var input3 = document.getElementById('input3').value;
     var input4 = document.getElementById('input4').value;
-
+    //let imgName = document.getElementById("input4").files[0].name;
+    completeImagePath = imagePath += 'dev.png';
+    /*if(typeof imgName == 'undefined'){
+      
+    }
+    else{
+      completeImagePath = imagePath+=imgName; 
+    }
+    */
     if(input1&&input2&&input3&&input4!=undefined){
       let educationData = { 
         edu_name: input1,
@@ -149,7 +220,7 @@ function addData(){
       let projectData = { 
         title: input1,
         project_desc: input2,
-        image: input4,
+        image: completeImagePath,
         url: input3};
   
     if (window.location.href.indexOf("-education") > 0) {

@@ -4,22 +4,18 @@ include("includes/header.php");
 ?>
 
 <?php
-    
            if(isset($_POST['add'])){
             if(!isset($_FILES['image']) || $_FILES['image']['error'] == UPLOAD_ERR_NO_FILE) {
-                $path = "#";
-                
+                $path = "#"; 
             } 
             
             else {
-            $image = $_FILES['image']['name'];
-              $target = "/userhome/asha1900/public_html/writeable/images/".basename($image);
-              move_uploaded_file($_FILES['image']['tmp_name'], $target);   
-              $newPath = "http://studenter.miun.se/~asha1900/writeable/images/".basename($image);
+                $image = $_FILES['image']['name'];
+                $target = "/userhome/asha1900/public_html/writeable/images/".basename($image);
+                move_uploaded_file($_FILES['image']['tmp_name'], $target);   
+                $newPath = "http://studenter.miun.se/~asha1900/writeable/images/".basename($image); 
             }
         }
-           
-      
     ?>
 
 
@@ -35,7 +31,7 @@ include("includes/header.php");
 <input type="text" name="input2" id="input2" required>
 <label for="input3">Länk:</label>
 <input type="text" name="input3" id="input3" required>
-<input type="hidden" name="size" value="1000000">
+<input type="hidden" name="size" value="3000000">
 <label for="input4" id="image-label">Välj bild att ladda upp (PNG, JPG)</label>
 <input type="file" name="image" id="input4" accept=".jpg, .jpeg, .png" value="">
 <input type="submit" name="add" id="add-post" value="Lägg till" onclick="addData()">
