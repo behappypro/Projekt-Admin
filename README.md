@@ -1,5 +1,4 @@
 # Administrationsgränssnitt
-- 
 I denna del behandlas admingränssnittet i projektet av kursen DT173G.<br>
 Nedan följer filstrukturen samt hur detta användargränssnitt är tänkt att fungera.
 
