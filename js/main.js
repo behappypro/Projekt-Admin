@@ -1,6 +1,6 @@
-const urlEducation = 'http://localhost/api/education.php/';
-const urlProjects = 'http://localhost/api/projects.php/';
-const urlEmployment = 'http://localhost/api//employment.php/';
+const urlEducation = 'http://studenter.miun.se/~asha1900/dt173g/cms/api/education.php/';
+const urlProjects = 'http://studenter.miun.se/~asha1900/dt173g/cms/api/projects.php/';
+const urlEmployment = 'http://studenter.miun.se/~asha1900/dt173g/cms/api/employment.php/';
 let imagePath = 'http://studenter.miun.se/~asha1900/writeable/images/';
 
 var dataUrl,editPage,objectData,educationTable,employmentTable,projectTable,completeImagePath;
@@ -197,32 +197,38 @@ function addData(){
     var input2 = document.getElementById('input2').value;
     var input3 = document.getElementById('input3').value;
     var input4 = document.getElementById('input4').value;
-    //let imgName = document.getElementById("input4").files[0].name;
-    completeImagePath = imagePath += 'dev.png';
-    /*if(typeof imgName == 'undefined'){
-      
+    completeImagePath = imagePath + 'dev.png';
+
+    if(window.location.href.indexOf("-project") > 0){
+      let imgName = document.getElementById("input4").files[0];
+        if(typeof imgName == 'undefined'){
+          completeImagePath = imagePath + 'dev.png';
+        }
+        else{
+          imgName = document.getElementById("input4").files[0].name;
+          completeImagePath = imagePath + imgName; 
+          alert(completeImagePath);
+        }
     }
-    else{
-      completeImagePath = imagePath+=imgName; 
-    }
-    */
+
+    let educationData = { 
+      edu_name: input1,
+      program_name: input2,
+      start_year: input3,
+      end_year: input4};
+    let employmentData = { 
+      place: input1,
+      title: input2,
+      start_year: input3,
+      end_year: input4};
+    let projectData = { 
+      title: input1,
+      project_desc: input2,
+      image: completeImagePath,
+      url: input3};
+
     if(input1&&input2&&input3&&input4!=undefined){
-      let educationData = { 
-        edu_name: input1,
-        program_name: input2,
-        start_year: input3,
-        end_year: input4};
-      let employmentData = { 
-        place: input1,
-        title: input2,
-        start_year: input3,
-        end_year: input4};
-      let projectData = { 
-        title: input1,
-        project_desc: input2,
-        image: completeImagePath,
-        url: input3};
-  
+     
     if (window.location.href.indexOf("-education") > 0) {
         dataUrl = urlEducation;
         objectData = educationData;
@@ -238,7 +244,9 @@ function addData(){
         dataUrl = urlProjects;
         objectData = projectData;
         redirUrl = 'http://studenter.miun.se/~asha1900/dt173g/cms/admin/admin-projects.php';
+  
     }
+
 
     fetch(dataUrl, {
         method: 'POST',
@@ -265,21 +273,7 @@ function updateData(){
     var input3 = document.getElementById('input3').value;
     var input4 = document.getElementById('input4').value;
     if(input1&&input2&&input3&&input4!=undefined){
-    let educationdata = { 
-      edu_name: input1,
-      program_name: input2,
-      start_year: input3,
-      end_year: input4};
-    let employmentData = { 
-      place: input1,
-      title: input2,
-      start_year: input3,
-      end_year: input4};
-    let projectData = { 
-      title: input1,
-      project_desc: input2,
-      image: input3,
-      url: input4};
+    
     
     if (window.location.href.indexOf("educationEdit") > 0) {
       dataUrl = urlEducation + '?id=' + SpecificId;
@@ -300,7 +294,30 @@ function updateData(){
       dataUrl = urlProjects + '?id=' + SpecificId;
       data = projectData;
       redirUrl = 'http://studenter.miun.se/~asha1900/dt173g/cms/admin/admin-projects.php';
+      let imgName = document.getElementById("input4").files[0].name;
+        if(typeof imgName == 'undefined'){
+          completeImagePath = imagePath += 'dev.png';
+        }
+        else{
+          completeImagePath = imagePath+=imgName; 
+        }
   }
+
+  let educationdata = { 
+    edu_name: input1,
+    program_name: input2,
+    start_year: input3,
+    end_year: input4};
+  let employmentData = { 
+    place: input1,
+    title: input2,
+    start_year: input3,
+    end_year: input4};
+  let projectData = { 
+    title: input1,
+    project_desc: input2,
+    image: completeImagePath,
+    url: input4};
   
     fetch(dataUrl, {
       method: 'PUT',
