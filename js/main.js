@@ -175,12 +175,13 @@ function getSpecificData(){
               <br>
               <label for="input2">Beskrivning:</label>
               <input type="input2" value="${data[Object.keys(data)[2]]}" name="input2" id="input2" required>
-              <label for="image" id="input3">Välj bild att ladda upp (PNG, JPG)</label>
-              <input type="file" name="image" id="input3" accept=".jpg, .jpeg, .png">
+              <label for="input5">Välj bild att ladda upp (PNG, JPG)</label>
+              <input type="file" name="image" value="${data[Object.keys(data)[3]]}" id="input5" accept=".jpg, .jpeg, .png">
               <br>
               <label for="input4">Länk:</label>
               <input type="text" value="${data[Object.keys(data)[4]]}" name="url" id="input4"required>
               <input type="submit" name="update" id="add-post" value="Upddatera" onclick="updateData()">
+              <input type="text" id="input3" style="display:none;" value="${data[Object.keys(data)[3]]}">
           `;
       } 
    
@@ -226,7 +227,7 @@ function addData(){
       image: completeImagePath,
       url: input3};
 
-    if(input1&&input2&&input3&&input4!=undefined){
+    if(input1&&input2&&input3&&input4!=''){
      
     if (window.location.href.indexOf("-education") > 0) {
         dataUrl = urlEducation;
@@ -271,13 +272,13 @@ function updateData(){
     var input3 = document.getElementById('input3').value;
     var input4 = document.getElementById('input4').value;
 
-    if(window.location.href.indexOf("-project") > 0){
-      let imgName = document.getElementById("input4").files[0];
+    if(window.location.href.indexOf("projectEdit") > 0){
+      let imgName = document.getElementById("input5").files[0];
         if(typeof imgName == 'undefined'){
-          completeImagePath = imagePath + 'dev.png';
+          completeImagePath = input3;
         }
         else{
-          imgName = document.getElementById("input4").files[0].name;
+          imgName = document.getElementById("input5").files[0].name;
           completeImagePath = imagePath + imgName; 
         }
     }
@@ -296,14 +297,13 @@ function updateData(){
       title: input1,
       project_desc: input2,
       image: completeImagePath,
-      url: input3};
+      url: input4};
 
-    if(input1&&input2&&input3&&input4!=undefined){
-    
-    
+    if(input1&&input2&&input3&&input4!=''){
+        
     if (window.location.href.indexOf("educationEdit") > 0) {
       dataUrl = urlEducation + '?id=' + SpecificId;
-      data = educationdata;
+      data = educationData;
       redirUrl = 'http://studenter.miun.se/~asha1900/dt173g/cms/admin/admin-education.php';
       
 
