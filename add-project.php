@@ -32,9 +32,10 @@ include("includes/header.php");
 <label for="input3">Länk:</label>
 <input type="text" name="input3" id="input3" required>
 <input type="hidden" name="size" value="3000000">
-<label for="input4" id="image-label">Välj bild att ladda upp (PNG, JPG)</label>
-<input type="file" name="image" id="input4" accept=".jpg, .jpeg, .png" value="">
+<label for="input5" id="image-label">Välj bild att ladda upp (PNG, JPG)</label>
+<input type="file" name="image" id="input5" accept=".jpg, .jpeg, .png">
 <input type="submit" name="add" id="add-post" value="Lägg till" onclick="addData()">
+<input type="text" id="input4" style="display:none;" value="FakeValue">
 <p id="message"></p>
 
 </div>

@@ -201,12 +201,12 @@ function addData(){
     completeImagePath = imagePath + 'dev.png';
 
     if(window.location.href.indexOf("-project") > 0){
-      let imgName = document.getElementById("input4").files[0];
+      let imgName = document.getElementById("input5").files[0];
         if(typeof imgName == 'undefined'){
           completeImagePath = imagePath + 'dev.png';
         }
         else{
-          imgName = document.getElementById("input4").files[0].name;
+          imgName = document.getElementById("input5").files[0].name;
           completeImagePath = imagePath + imgName; 
         }
     }
